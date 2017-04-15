@@ -73,21 +73,36 @@
 
         for (i = 0; i < pontos.length; i++) {
           marker = new google.maps.Marker({
+            identificador: i + 1,
+            ativo: true,
+            icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
             position: new google.maps.LatLng(pontos[i][1], pontos[i][2]),
             map: map
           });
 
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
+              console.log("distancia de: " + this.identificador);
+              console.log(google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(this.getPosition().lat(),this.getPosition().lng()), new google.maps.LatLng(-30.031819,-51.231349)));
+              marker.ativo = !marker.ativo;
+              if(marker.ativo) {
+                marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+              } else {
+                marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+              }
               infowindow.setContent(pontos[i][0]);
               infowindow.open(map, marker);
+              // trocaStatusMarca(marker);
             }
           })(marker, i));
         }
       }
 
 </script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrPzOscJfdLUzjF7tBZyFVaQth4sAGUO0&callback=initMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrPzOscJfdLUzjF7tBZyFVaQth4sAGUO0&libraries=geometry&callback=initMap"></script>
 
+<script type="text/javascript" src="/js/site/algoritmo-a-estrela.js">
+
+</script>
 </body>
 </html>
