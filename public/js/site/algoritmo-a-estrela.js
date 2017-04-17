@@ -1,4 +1,3 @@
-var bkpPontos = [];
 
 var ponto = function(objeto) {
   return {
@@ -18,15 +17,15 @@ var ponto = function(objeto) {
   };
 };
 
-var montarListaDePontos = function(pontos) {
-  // bkpPontos.push();
+var montarListaDePontos = function(p) {
+  var bkpPontos = [];
+  for (i = 0; i < p.length; i++) {
+    bkpPontos.push(ponto(p[i]));
+  }
+  return bkpPontos;
 };
 
-var trocaStatusMarca = function(marker) {
-  console.log(marker);
-};
-
-function Get(yourUrl){
+var Get = function(yourUrl){
     var Httpreq = new XMLHttpRequest();
     Httpreq.open("GET",yourUrl,false);
     Httpreq.send(null);

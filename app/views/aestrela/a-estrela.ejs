@@ -5,7 +5,25 @@
 
     <div class="row">
       <div class="col-md-2">
-        formulario
+        <form>
+          <div class="form-group">
+            <label for="origem">Origem:</label>
+            <select id="selectOrigem" class="form-control" id="origem">
+              <% for(var i=1; i <= 41; i++) { %>
+                <option><%= i %></option>
+              <% } %>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="destino">Destino:</label>
+            <select id="selectDestino" class="form-control" id="destino">
+              <% for(var i=1; i <= 41; i++) { %>
+                <option><%= i %></option>
+              <% } %>
+            </select>
+          </div>
+          <button type="button" id="buttonSetarOrigemDestino" class="btn btn-success">Submit</button>
+        </form>
       </div>
 
       <div class="col-md-10" id="map">
@@ -13,10 +31,21 @@
     </div>
 
     <% include ../includes/footer.ejs %>
-    <% include ../includes/imports-js.ejs %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/site/algoritmo-a-estrela.js"></script>
 
     <script type="text/javascript">
+
+      $("html").on("click", "button", function() {
+        origem = pontos[$('#selectOrigem').val() - 1];
+        destino = pontos[$('#selectDestino').val() -1];
+
+        console.log("origem: ");
+        console.log(origem);
+        console.log("destino: ")
+        console.log(destino);
+      });
 
       var myStyle = [
         {
@@ -36,13 +65,10 @@
       ];
 
       var pontosJson = JSON.parse(Get("/pontosIniciais"));
-      var pontos = [];
+      var pontos = montarListaDePontos(pontosJson);
 
-      for (i = 0; i < pontosJson.length; i++) {
-        pontos.push(ponto(pontosJson[i]));
-      }
-
-      var destino = pontos[40];
+      var origem = {};
+      var destino = {};
 
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
