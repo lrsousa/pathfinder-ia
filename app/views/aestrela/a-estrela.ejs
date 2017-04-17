@@ -18,14 +18,40 @@
 
     <script type="text/javascript">
 
-      var pontos = JSON.parse(Get("/pontosIniciais"));
+      var myStyle = [
+        {
+          featureType: "administrative",
+          elementType: "labels",
+          stylers: [
+            { visibility: "off" }
+          ]
+        },
+        {
+          featureType: "poi",
+          elementType: "labels",
+          stylers: [
+            { visibility: "off" }
+          ]
+        }
+      ];
+
+      var pontosJson = JSON.parse(Get("/pontosIniciais"));
+      var pontos = [];
+
+      for (i = 0; i < pontosJson.length; i++) {
+        pontos.push(ponto(pontosJson[i]));
+      }
+
+      var destino = pontos[40];
 
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 16,
           center: new google.maps.LatLng(-30.032118, -51.236217),
-          mapTypeId: google.maps.MapTypeId.ROADMAP
+          mapTypeId: 'mystyle'
         });
+
+        map.mapTypes.set('mystyle', new google.maps.StyledMapType(myStyle, { name: 'My Style' }));
 
         var infowindow = new google.maps.InfoWindow();
 
@@ -33,30 +59,36 @@
 
         for (i = 0; i < pontos.length; i++) {
           marker = new google.maps.Marker({
-            identificador: i + 1,
+            identificador: pontos[i].id,
             ativo: true,
-            icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
-            position: new google.maps.LatLng(pontos[i][1], pontos[i][2]),
+            icon: {
+              url: 'http://maps.google.com/mapfiles/ms/icons/green.png'
+            },
+            position: new google.maps.LatLng(pontos[i].lat, pontos[i].lng),
+            label: {
+              text:pontos[i].id.toString(),
+              fontWeight:'bold'
+            },
             map: map
           });
 
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
               console.log("distancia de: " + this.identificador);
-              console.log(google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(this.getPosition().lat(),this.getPosition().lng()), new google.maps.LatLng(-30.031819,-51.231349)));
+              console.log(pontos[this.identificador-1].distanciaGeodesicaDestino(destino));
               marker.ativo = !marker.ativo;
               if(marker.ativo) {
-                marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+                marker.setIcon({url:'http://maps.google.com/mapfiles/ms/icons/green.png'});
+                pontos[this.identificador-1].ativo = true;
               } else {
-                marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+                marker.setIcon({url:'http://maps.google.com/mapfiles/ms/icons/red.png'});
+                pontos[this.identificador-1].ativo = false;
               }
-              infowindow.setContent(pontos[i][0]);
-              infowindow.open(map, marker);
-              // trocaStatusMarca(marker);
             }
           })(marker, i));
         }
       }
+
 
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrPzOscJfdLUzjF7tBZyFVaQth4sAGUO0&libraries=geometry&callback=initMap"></script>
