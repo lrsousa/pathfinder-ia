@@ -24,7 +24,7 @@ module.exports = function(app) {
       {id:12,	lat:-30.034058, lng:-51.235514,	vizinhos:[5, 11,13], visitado: false, pai: null},
       {id:13,	lat:-30.034012, lng:-51.235360,	vizinhos:[12, 14, 25], visitado: false, pai: null},
       {id:14,	lat:-30.033143, lng:-51.235741,	vizinhos:[4, 13, 15, 24], visitado: false, pai: null},
-      {id:15,	lat:-30.032118, lng:-51.236217,	vizinhos:[3, 14, 16, 24], visitado: false, pai: null},
+      {id:15,	lat:-30.032118, lng:-51.236217,	vizinhos:[3, 14, 16, 20], visitado: false, pai: null},
       {id:16,	lat:-30.031394, lng:-51.236537,	vizinhos:[2, 15, 17, 19], visitado: false, pai: null},
       {id:17,	lat:-30.030570, lng:-51.236919,	vizinhos:[1, 16, 18], visitado: false, pai: null},
       {id:18,	lat:-30.030401, lng:-51.236476,	vizinhos:[17, 19, 21], visitado: false, pai: null},
