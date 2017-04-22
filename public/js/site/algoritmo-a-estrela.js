@@ -47,6 +47,11 @@ var pathfinder = function() {
     origem = listaAberta.shift();
     listaFechada.push(origem);
 
+    if(origem == null) {
+      alert("Impossível achar um caminho!");
+      break;
+    }
+
     for (var i = 0; i < origem.vizinhos.length; i++) {
       var pontoI = pontos[origem.vizinhos[i] - 1];
       if(pontoI.ativo && listaFechada.indexOf(pontoI) < 0) {
