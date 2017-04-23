@@ -71,25 +71,27 @@ var pathfinder = function() {
     }
   }
   listaFechada.push(listaAberta.shift());
+  desenhaRota(destino);
+};
 
-  var _polyline = []
-  var retorno = destino;
-  while(retorno != null) {
-    _polyline.push({lat: retorno.lat, lng: retorno.lng});
-    retorno = retorno.pai;
+var rota;
+var desenhaRota = function(ponto) {
+  if(rota != null) rota.setMap(null);
+  var _polyline = [];
+  while(ponto != null) {
+    _polyline.push({lat: ponto.lat, lng: ponto.lng});
+    ponto = ponto.pai;
   }
-  var flightPath = new google.maps.Polyline({
+  rota = new google.maps.Polyline({
     path: _polyline,
     geodesic: true,
     strokeColor: '#FF0000',
     strokeOpacity: 1.0,
     strokeWeight: 3
   });
-  initMap();
-  flightPath.setMap(map);
+
+  rota.setMap(map);
 };
-
-
 
 var comparaDistancia = function(a, b) {
   return (a.f - b.f);
