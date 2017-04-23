@@ -33,8 +33,8 @@ var Get = function(yourUrl){
     return Httpreq.responseText;
 };
 
-var listaAberta = [];
-var listaFechada = [];
+var listaAberta;
+var listaFechada;
 
 var pathfinder = function() {
   listaAberta = [];

@@ -1,8 +1,37 @@
-#map {
-  height: 750px;
-  width: 80%;
+
+@media (max-height: 768px)
+{
+  #map {
+    height: 450px;
+    width: 80%;
+  }
 }
 
+@media (min-height: 769px)
+{
+  #map {
+    height: 750px;
+    width: 80%;
+  }
+}
+
+
 .principal {
-  padding: 30px 0px 0px 10px;
+  padding: 20px 0px 0px 10px;
+  margin-right: 10px;
+}
+
+.cabecalho{
+  padding: 10px 10px 10px 30px;
+  margin-right: 10px;
+
+}
+
+.cabecalho img {
+  max-width: 70%;
+  height: auto;
+}
+
+.cabecalho h1, h2, h3 {
+  margin-top: 0px;
 }

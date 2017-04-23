@@ -2,6 +2,7 @@
 <html>
   <% include ../includes/header.ejs %>
   <body>
+    <% include ../includes/cabecalho.ejs %>
     <div class="row principal">
       <div class="col-md-2">
         <form>
@@ -21,8 +22,19 @@
               <% } %>
             </select>
           </div>
-          <button type="button" id="buttonSetarOrigemDestino" class="btn btn-success">Submit</button>
+          <button type="button" id="buttonSetarOrigemDestino" class="btn btn-success">Calcular</button>
         </form>
+
+        <div class="row principal">
+          Clique em um ponto para bloquear ou desbloquear um caminho.
+        </div>
+
+        <div class="row principal">
+          <img src="http://maps.google.com/mapfiles/ms/icons/green.png" alt=""> Caminho livre
+        </div>
+        <div class="row principal">
+          <img src="http://maps.google.com/mapfiles/ms/icons/red.png" alt=""> Caminho bloqueado
+        </div>
       </div>
 
       <div class="col-md-10" id="map">
