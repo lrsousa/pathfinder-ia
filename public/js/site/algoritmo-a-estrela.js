@@ -71,7 +71,9 @@ var pathfinder = function() {
     }
   }
   listaFechada.push(listaAberta.shift());
-  desenhaRota(destino);
+  if(origem.id == destino.id) {
+    desenhaRota(destino);
+  }
 };
 
 var rota;
