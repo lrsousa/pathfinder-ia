@@ -58,20 +58,22 @@ var pathfinder = function() {
       achouDestino = true;
     }
 
-    for (var i = 0; i < origem.vizinhos.length; i++) {
-      var pontoI = pontos[origem.vizinhos[i] - 1];
-      if(pontoI.ativo && listaFechada.indexOf(pontoI) < 0) {
-        if(listaAberta.indexOf(pontoI) < 0) {
-          listaAberta.push(pontoI);
-          pontoI.pai = origem;
-          pontoI.g = pontoI.distanciaGeodesicaDestino(origem) + origem.g;
-          pontoI.h = pontoI.distanciaGeodesicaDestino(destino);
-          pontoI.f = pontoI.g + pontoI.h;
-        } else {
-          if(origem.g < pontoI.g) {
+    if(!achouDestino) {
+      for (var i = 0; i < origem.vizinhos.length; i++) {
+        var pontoI = pontos[origem.vizinhos[i] - 1];
+        if(pontoI.ativo && listaFechada.indexOf(pontoI) < 0) {
+          if(listaAberta.indexOf(pontoI) < 0) {
+            listaAberta.push(pontoI);
             pontoI.pai = origem;
             pontoI.g = pontoI.distanciaGeodesicaDestino(origem) + origem.g;
+            pontoI.h = pontoI.distanciaGeodesicaDestino(destino);
             pontoI.f = pontoI.g + pontoI.h;
+          } else {
+            if((origem.g + origem.distanciaGeodesicaDestino(pontoI))  < pontoI.g) {
+              pontoI.pai = origem;
+              pontoI.g = pontoI.distanciaGeodesicaDestino(origem) + origem.g;
+              pontoI.f = pontoI.g + pontoI.h;
+            }
           }
         }
       }
