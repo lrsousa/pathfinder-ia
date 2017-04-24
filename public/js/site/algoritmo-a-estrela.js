@@ -74,6 +74,7 @@ var pathfinder = function() {
   if(origem.id == destino.id) {
     desenhaRota(destino);
   }
+  zerarPais();
 };
 
 var rota;
@@ -93,6 +94,12 @@ var desenhaRota = function(ponto) {
   });
 
   rota.setMap(map);
+};
+
+var zerarPais = function() {
+  for (var i = 0; i < pontos.length; i++) {
+    pontos[i].pai = null;
+  }
 };
 
 var comparaDistancia = function(a, b) {
