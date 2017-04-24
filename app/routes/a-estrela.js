@@ -11,7 +11,7 @@ module.exports = function(app) {
 
     var pontos = [
       {id:1,	lat:-30.030937, lng:-51.238051,	vizinhos:[2, 17], visitado: false, pai: null},
-      {id:2,	lat:-30.031764, lng:-51.237695, vizinhos:[3, 16], visitado: false, pai: null},
+      {id:2,	lat:-30.031764, lng:-51.237695, vizinhos:[1, 3, 16], visitado: false, pai: null},
       {id:3,	lat:-30.032525, lng:-51.237354, vizinhos:[2, 4, 15], visitado: false, pai: null},
       {id:4,	lat:-30.033491, lng:-51.236948, vizinhos:[3, 5, 14], visitado: false, pai: null},
       {id:5,	lat:-30.034320, lng:-51.236565, vizinhos:[4, 6, 12], visitado: false, pai: null},

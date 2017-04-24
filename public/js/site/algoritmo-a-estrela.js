@@ -35,10 +35,12 @@ var Get = function(yourUrl){
 
 var listaAberta;
 var listaFechada;
+var achouDestino;
 
 var pathfinder = function() {
   listaAberta = [];
   listaFechada = [];
+  achouDestino = false;
 
   listaAberta.push(origem);
   while (origem.id != destino.id) {
@@ -47,8 +49,13 @@ var pathfinder = function() {
     listaFechada.push(origem);
 
     if(origem == null) {
+      zerarPais();
       alert("Impossível achar um caminho!");
       break;
+    }
+
+    if(origem.id == destino.id) {
+      achouDestino = true;
     }
 
     for (var i = 0; i < origem.vizinhos.length; i++) {
@@ -71,7 +78,7 @@ var pathfinder = function() {
     }
   }
   listaFechada.push(listaAberta.shift());
-  if(origem.id == destino.id) {
+  if(achouDestino) {
     desenhaRota(destino);
   }
   zerarPais();
