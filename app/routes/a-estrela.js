@@ -4,7 +4,7 @@ module.exports = function(app) {
   });
 
   app.get('/', function(req, res) {
-    res.render('index');
+    res.render('aestrela/a-estrela');
   });
 
   app.get('/pontosIniciais', function(req, res) {

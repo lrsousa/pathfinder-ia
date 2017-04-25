@@ -50,12 +50,7 @@
 
       $("html").on("click", "button", function() {
         origem = pontos[$('#selectOrigem').val() - 1];
-        destino = pontos[$('#selectDestino').val() -1];
-
-        console.log("origem: ");
-        console.log(origem);
-        console.log("destino: ")
-        console.log(destino);
+        destino = pontos[$('#selectDestino').val() - 1];
         pathfinder();
       });
 
@@ -91,8 +86,6 @@
 
         map.mapTypes.set('mystyle', new google.maps.StyledMapType(myStyle, { name: 'My Style' }));
 
-        var infowindow = new google.maps.InfoWindow();
-
         var marker, i;
 
         for (i = 0; i < pontos.length; i++) {
@@ -112,8 +105,6 @@
 
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
-              console.log("distancia de: " + this.identificador);
-              console.log(pontos[this.identificador-1].distanciaGeodesicaDestino(destino));
               marker.ativo = !marker.ativo;
               if(marker.ativo) {
                 marker.setIcon({url:'http://maps.google.com/mapfiles/ms/icons/green.png'});
