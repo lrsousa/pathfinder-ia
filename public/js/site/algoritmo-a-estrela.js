@@ -38,10 +38,15 @@ var listaFechada;
 var achouDestino;
 
 var pathfinder = function() {
+  if(origem == destino) {
+    alert("Origem é igual o destino.");
+    return;
+  }
+
   listaAberta = [];
   listaFechada = [];
   achouDestino = false;
-
+  
   listaAberta.push(origem);
   while (origem.id != destino.id) {
     listaAberta.sort(comparaDistancia);
