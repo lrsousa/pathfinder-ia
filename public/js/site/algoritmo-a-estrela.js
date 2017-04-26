@@ -43,6 +43,11 @@ var pathfinder = function() {
     return;
   }
 
+  if(!origem.ativo || !destino.ativo) {
+    alert("Origem ou Destino Bloqueados.");
+    return;
+  }
+
   listaAberta = [];
   listaFechada = [];
   achouDestino = false;
