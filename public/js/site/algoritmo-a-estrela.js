@@ -46,7 +46,7 @@ var pathfinder = function() {
   listaAberta = [];
   listaFechada = [];
   achouDestino = false;
-  
+
   listaAberta.push(origem);
   while (origem.id != destino.id) {
     listaAberta.sort(comparaDistancia);
@@ -84,7 +84,7 @@ var pathfinder = function() {
       }
     }
   }
-  listaFechada.push(listaAberta.shift());
+  // listaFechada.push(listaAberta.shift());
   if(achouDestino) {
     desenhaRota(destino);
   }
